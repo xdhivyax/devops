@@ -1,6 +1,6 @@
 ---
 - name: install apache2 on slave1
-  hosts: localhost
+  hosts: apache_server
   become: true
   tasks:
     - name: apt-update
@@ -16,7 +16,7 @@
         state: restarted
 
 - name: install nginx on slave2
-  hosts: localhost
+  hosts: nginx_server
   become: true
   tasks:
     - name: run apt-update
