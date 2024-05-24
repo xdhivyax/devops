@@ -1,0 +1,6 @@
+- name: Installation on localhost
+  hosts: localhost
+  become: true
+  tasks:
+  - name: Install necessary software on localhost
+    script: install.sh
