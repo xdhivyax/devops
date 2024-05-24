@@ -1,5 +1,5 @@
 ---
-- name: install apache2 on slave1
+- name: install apache2 on node1
   hosts: apache_server
   become: true
   tasks:
@@ -15,7 +15,7 @@
         name: apache2
         state: restarted
 
-- name: install nginx on slave2
+- name: install nginx on node2
   hosts: nginx_server
   become: true
   tasks:
