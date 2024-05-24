@@ -1,5 +1,4 @@
 sudo apt update
-sudo apt install openjdk-11-jdk -y
 sudo apt install docker.io -y
 sudo apt install python3 python3-pip 
 sudo wget -O /usr/share/keyrings/jenkins-keyring.asc \
