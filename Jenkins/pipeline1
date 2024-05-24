@@ -1,0 +1,44 @@
+pipeline {
+    agent none
+
+    stages {
+        stage('Clone Repository on agent1') {
+            agent {
+                label 'agent1'
+            }
+            steps {
+                git branch: 'main', url: 'https://github.com/xdhivyax/MyWork.git'
+            }
+        }
+        stage('Run Ansible Playbook on Agent 1') {
+            agent {
+                label 'agent1'
+            }
+            steps {
+                sh '''
+                  cd Ansible
+                  ansible-playbook apache.yaml
+                '''
+            }
+        }
+        stage('Clone Repository on agent2') {
+            agent {
+                label 'agent2'
+            }
+            steps {
+                git branch: 'main', url: 'https://github.com/xdhivyax/MyWork.git'
+            }
+        }
+        stage('Run Ansible Playbook on Agent 2') {
+            agent {
+                label 'agent2'
+            }
+            steps {
+                sh '''
+                  cd Ansible
+                  ansible-playbook nginx.yaml
+                '''
+            }
+        }
+    }
+}
