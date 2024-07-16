@@ -1,0 +1,15 @@
+pipeline{
+    agent any
+    stages{
+        stage("clone git"){
+            steps{
+                git branch: 'main', url: 'https://github.com/xdhivyax/Jenkins.git'
+            }
+        }
+        stage("execute playbook"){
+            steps{
+                ansiblePlaybook credentialsId: 'ssh-credentials', disableHostKeyChecking: true, installation: 'ansible', inventory: 'hosts', playbook: 'mysql.yaml', vaultTmpPath: ''
+            }
+        }
+    }
+}

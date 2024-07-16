@@ -1,0 +1,18 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+    - name: Install Apache2 on the first machine
+      apt:
+        name: apache2
+        state: present
+      when: inventory_hostname == "34.230.47.123"
+
+    - name: Install Nginx on the second machine
+      apt:
+        name: nginx
+        state: present
+      when: inventory_hostname == "3.83.68.59"
